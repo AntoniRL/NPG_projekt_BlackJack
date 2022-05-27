@@ -1,12 +1,13 @@
 from inspect import stack
 import random
 class Game:
-    def __init__(self,stack,dealer_cards,number_of_players,players_list,number_of_decks):
-        self.stack = stack #Stos kart
-        self.dealer_cards = dealer_cards #Karty krupiera
-        self.number_of_players = number_of_players #Liczba graczy
+    def __init__(self,players_list,number_of_decks = 1):
+        self.stack = [] #Stos kart
+        self.dealer_cards = []
+        self.number_of_players = len(players_list) #Liczba graczy
         self.players_list = players_list #Lista graczy
         self.number_of_decks = number_of_decks #Liczba użytych talii
+        self.stack_creation()
 
     def rozdanie (self):
         for _ in range(2):
@@ -29,6 +30,28 @@ class Game:
                     self.stack.append(Card(suits_values[suit], card, values[card]))   # Dodanie karty o danych wartościach do stosu
         random.shuffle(self.stack) #Przetasowanie stosu kart
         return self.stack 
+
+    def play_again(self):
+        pass    
+
+    def total(self):
+        pass
+
+    def hit(self): 
+        pass
+
+    def clear(self):
+        pass
+
+    def print_table(self):
+        pass
+
+    def blackjack(self):
+        pass
+
+    def score(self):
+        pass
+
 
 class Card:
     def __init__(self, suit, symbol, value):    
