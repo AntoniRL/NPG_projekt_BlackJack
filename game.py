@@ -50,7 +50,7 @@ class Game:
         os.system('cls')
 
     def print_table(self):
-        #interfejs da radę pokazać 7 kart dla krupiera i góra 20 kart gracza, chyba wystarczy
+        #interfejs da radę pokazać 7 kart dla krupiera i góra 10 kart gracza(po modyfikacji możliwe jest 14 i 20 odpowiednio), chyba wystarczy
         player_size = 20
         dealer_size = 14
 
