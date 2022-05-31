@@ -1,3 +1,4 @@
+
 from inspect import stack
 import random
 class Game:
@@ -36,6 +37,7 @@ class Game:
 
     def total(self):
         pass
+
 
     def hit(self): 
         pass
