@@ -34,8 +34,6 @@ class Game:
     def play_again(self):
         pass    
 
-    def total(self):
-        pass
 
     def hit(self): 
         pass
@@ -66,3 +64,11 @@ class Player:
         self.nr_wins = nr_wins
     def add_card(self,card):
         self.cards.append(card)
+
+    def total(self):
+        total = 0
+        for card in self.cards:
+            total+=card.value
+            if card.symbol == "A" and total>21: 
+                total-=10
+        return total
