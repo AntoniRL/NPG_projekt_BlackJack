@@ -42,7 +42,7 @@ def start_pulpit():
     number_of_decks = 0
 
     while True:
-        print(f.renderText('    WELCOEM TO\nB L A C K J A C K !'))
+        print(f.renderText('   WELCOME TO\nB L A C K J A C K !'))
         print(" "*10+"-"*32+"\n")
         print(
             " "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
@@ -69,7 +69,7 @@ def start_pulpit():
                     clear_line()
                     continue
             # Dodanie gracza do gry
-            players_list.append(game.Player(nick))
+            players_list.append(game.Player([],nick,0))
             clear_line()
             clear_line()
             more_players = input(
@@ -104,7 +104,7 @@ def start_pulpit():
         else:
             clear()
             continue
-    return players_list, number_of_decks
+    return (players_list, number_of_decks)
 
 
 def end_pulpit():
@@ -114,5 +114,3 @@ def end_pulpit():
 # # Kod wypisujący wygraną i przegraną
 # print_red(f.renderText('DEFEAT'))
 # print_green(f.renderText('WIN!'))
-
-start_pulpit()
