@@ -16,10 +16,10 @@ class Game:
     def rozdanie(self):
         for _ in range(2):
             for i in range(len(self.players_list)):
-                player_card = stack.pop()
+                player_card = self.stack.pop()
                 self.players_list[i].add_card(player_card)
-            dealer_card = stack.pop()
-            self.dealer_cards.append(dealer_card)
+            dealer_card = self.stack.pop()
+            self.dealer_cards.append(dealer_card)   
         print(self.players_list[0])
 
     def stack_creation(self):
@@ -29,7 +29,7 @@ class Game:
         values = {"A": 11, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10,
                   "K": 10}
         self.stack = []
-        for i in range(self.number_of_decks):
+        for _ in range(self.number_of_decks):
             for suit in suits:  # Pętla dla każdego koloru    
                 for card in symbols:  # Pętla dla każdej karty w danym kolorze
                     self.stack.append(
@@ -40,8 +40,6 @@ class Game:
     def play_again(self):
         pass
 
-    def total(self):
-        pass
 
     def hit(self):
         pass
@@ -100,9 +98,17 @@ class Card:
 
 
 class Player:
-    def __init__(self, cards, nick):
-        self.nick = nick
-        self.cards = cards  # Aktualne posiadane przez gracza karty
-
-    def add_card(self, card):
+    def __init__(self,cards,nick,nr_wins):
+        self.nick = nick 
+        self.cards = cards #Aktualne posiadane przez gracza karty
+        self.nr_wins = nr_wins
+    def add_card(self,card):
         self.cards.append(card)
+
+    def total(self):
+        total = 0
+        for card in self.cards:
+            total+=card.value
+            if card.symbol == "A" and total>21: 
+                total-=10
+        return total
