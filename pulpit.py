@@ -1,6 +1,5 @@
 #!/urs/bin/env python3
 # -*- coding: utf-8 -*-
-
 from termcolor import colored, cprint
 from pyfiglet import Figlet
 from prettytable import PrettyTable
@@ -97,7 +96,7 @@ def start_pulpit():
         # Wypisanie ilości talii
         print("Number of card decks: " + str(number_of_decks) + "\n")
         # Pytanie czy można podejść do gry
-        temp = input("[S]TART GAME / [G]o back to menu\n").lower()
+        temp = input("[S]TART GAME / [G]O BACK TO MENU\n").lower()
         if temp == 's':
             clear()
             break
