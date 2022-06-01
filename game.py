@@ -47,10 +47,34 @@ class Game:
         pass
 
     def blackjack(self):
-        pass
+        if total(player_hand) == 21: #Sprawdza czy wartość na ręce jest równa
+            print_results(dealer_hand, player_hand)
+            print("You win !\n")
+            play_again()
+        elif total(dealer_hand) == 21:
+            print_results(dealer_hand, player_hand)
+            print("You lose\n")
+            play_again()
 
     def score(self):
-        pass
+        if total(player_hand) == 21:
+            print_results(dealer_hand, player_hand)
+            print("Congratulations! You got a Blackjack!\n")
+        elif total(dealer_hand) == 21:
+            print_results(dealer_hand, player_hand)
+            print("Sorry, you lose. The dealer got a blackjack.\n")
+        elif total(player_hand) > 21:
+            print_results(dealer_hand, player_hand)
+            print("Sorry. You busted. You lose.\n")
+        elif total(dealer_hand) > 21:
+            print_results(dealer_hand, player_hand)
+            print("Dealer busts. You win!\n")
+        elif total(player_hand) < total(dealer_hand):
+            print_results(dealer_hand, player_hand)
+            print("Sorry. Your score isn't higher than the dealer. You lose.\n")
+        elif total(player_hand) > total(dealer_hand):
+            print_results(dealer_hand, player_hand)
+            print("Congratulations. Your score is higher than the dealer. You win\n")
 
 
 class Card:
