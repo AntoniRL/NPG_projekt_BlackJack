@@ -43,8 +43,7 @@ def start_pulpit():
     while True:
         print(f.renderText('   WELCOME TO\nB L A C K J A C K !'))
         print(" "*10+"-"*32+"\n")
-        print(
-            " "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
+        print(" "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
         print(" "*10+"-"*32+"\n")
 
         # pętla obsługująca dodawanie graczy

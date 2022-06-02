@@ -65,22 +65,21 @@ class Game:
         player_hand_chars = ""
         player_hand_chars += "╱" + int((player_size - 2 * player_n_chars) / 2) * " "
         for card in player_cards:
-            player_hand_chars += card + " "
+            player_hand_chars = card.symbol + " "
         player_hand_chars += (player_size - len(player_hand_chars) + 1) * " " + "╲"
 
         dealer_hand_chars = ""
         dealer_hand_chars += "╱" + int((dealer_size - 2 * dealer_n_chars) / 2) * " "
         for card in dealer_cards:
-            dealer_hand_chars += card
+            dealer_hand_chars += card.symbol
         dealer_hand_chars += (dealer_size - len(dealer_hand_chars) + 1) * " " + "╲"
 
         print(Fore.GREEN + "  Wins: {:2d}".format(5) + Fore.RED + "   Losses: {:2d}".format(3) + Fore.WHITE)
         print(init_space * " " + dealer_size * "_")
         print("   " + dealer_hand_chars)
-        print("  ╱                ╲    Bet: {}\n ╱                  ╲   Your score: {}".format(14, 13))
+        print("  ╱                ╲    Bet: {}\n ╱                  ╲   Your score: {}".format(14, self.players_list[0].total()))
         print(player_hand_chars)
         print((player_size + 2) * chr(8254))
-        print("[H]it\n[S]tand\n[Q]uit")
 
 
     def blackjack(self):
