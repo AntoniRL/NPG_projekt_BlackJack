@@ -1,6 +1,6 @@
 from inspect import stack
 import random
-
+import os
 from colorama import Fore
 
 
@@ -39,16 +39,13 @@ class Game:
         return self.stack 
 
     def play_again(self):
-        pass    
-
-    def total(self):
         pass
 
     def hit(self): 
         pass
 
     def clear(self):
-        pass
+        os.system('cls')
 
     def print_table(self):
         #interfejs da radę pokazać 7 kart dla krupiera i góra 10 kart gracza(po modyfikacji możliwe jest 14 i 20 odpowiednio), chyba wystarczy
@@ -140,4 +137,3 @@ class Player:
             if card.symbol == "A" and total>21: 
                 total-=10
         return total
-
