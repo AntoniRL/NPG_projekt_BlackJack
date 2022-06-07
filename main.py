@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 from pickle import TRUE
 from pprint import pprint
 from tkinter import W
@@ -15,7 +14,7 @@ def main():
         Gra.rozdanie() 
         Gra.print_table(False)
         while TRUE: 
-            if Gra.players_list[0].total() > 21:
+            if Gra.players_list[0].total() >= 21:
                 break
             temp1 = input("[H]IT / [S]TAND \n").lower() #Wybór ruchu gracza
             if temp1 == 's':
@@ -24,7 +23,11 @@ def main():
                 player_card = Gra.stack.pop()
                 Gra.players_list[0].add_card(player_card)
                 Gra.print_table(False)
-        Gra.print_table(True)        
+        Gra.print_table(True)
+        while Gra.dealer.total() < Gra.players_list[0].total() <= 21: #Pętla ,w której krupier dobiera karty jeśli przegrywa
+            dealer_card = Gra.stack.pop()
+            Gra.dealer.add_card(dealer_card)
+            Gra.print_table(True)
         Gra.score()    
         temp2 = input("[K]EEP PLAYING / [L]EAVE THE TABLE\n").lower()
         if temp2 == 'l':

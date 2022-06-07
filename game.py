@@ -31,7 +31,7 @@ class Game:
         return self.stack 
 
     def rozdanie (self):
-        self.dealer.cards = []                         #Czyszczenie kart krupiera przed każdym rozdaniem
+        self.dealer.cards = []                        #Czyszczenie kart krupiera przed każdym rozdaniem
         for i in range(len(self.players_list)):       #Pętla czyszcząca karty dla każdego gracza
                 self.players_list[i].cards = []
         for _ in range(2):                            #Rozdanie 2 kart krupierowi i każdemu graczowi
@@ -77,8 +77,8 @@ class Game:
         if show_dealer_card == True:
             for card in dealer_cards:
                 dealer_hand_chars = dealer_hand_chars + card.symbol + " "
-        else :
-            dealer_hand_chars = dealer_hand_chars + card.symbol + " [?]"
+        else:
+            dealer_hand_chars = dealer_hand_chars + dealer_cards[0].symbol + " [?]"
         dealer_hand_chars += (dealer_size - len(dealer_hand_chars) + 1) * " " + "╲"
 
         print(Fore.GREEN + "  Wins: {:2d}".format(5) + Fore.RED + "   Losses: {:2d}".format(3) + Fore.WHITE)
@@ -100,17 +100,20 @@ class Game:
   #         play_again()
 
     def score(self):
-        if self.players_list[0].total() == 21:
+        if self.players_list[0].total() > 21:
+            print("Sorry. Too much. You lose.\n")    
+        elif self.players_list[0].total() == 21:
             print("Congratulations! You got a Blackjack!\n")
         elif self.dealer.total() == 21:
-            print("Sorry, you lose. The dealer got a blackjack.\n")
-        elif self.players_list[0].total() > 21:
-            print("Sorry. Too much. You lose.\n")
-        elif self.players_list[0].total() < self.dealer.total():
+            print("Sorry, you lose. The dealer got a blackjack.\n")    
+        elif self.dealer.total() == self.players_list[0].total():
+            print("You and dealer got the same score.\n")    
+        elif self.players_list[0].total() < self.dealer.total() < 21:
             print("Sorry. Your score isn't higher than the dealer. You lose.\n")
-        elif self.players_list[0].total() > self.dealer.total():
+        elif 21 > self.players_list[0].total() > self.dealer.total():
             print("Congratulations. Your score is higher than the dealer. You win\n")
-
+        elif self.dealer.total() > 21 > self.players_list[0].total():
+            print("Congratulations. You win\n")
 
 class Card:
     def __init__(self, suit, symbol, value):    
