@@ -138,3 +138,8 @@ class Player:
             if card.symbol == "A" and total>21: 
                 total-=10
         return total
+    
+    def hit(self):
+	player_card = self.stack.pop()
+        self.players_list[0].add_card(player_card)
+        self.print_table(False)
