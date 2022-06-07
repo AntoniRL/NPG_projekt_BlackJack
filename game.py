@@ -38,6 +38,15 @@ class Game:
         random.shuffle(self.stack) #Przetasowanie stosu kart
         return self.stack 
 
+    def rozdanie (self):
+        for _ in range(2):
+            for i in range(len(self.players_list)):
+                player_card = self.stack.pop()
+                self.players_list[i].add_card(player_card)
+            dealer_card = self.stack.pop()
+            self.dealer_cards.append(dealer_card)   
+        print(self.players_list[0])    
+
     def play_again(self):
         pass
 
@@ -82,34 +91,26 @@ class Game:
         print((player_size + 2) * chr(8254))
 
 
-    def blackjack(self):
-        if total(player_hand) == 21: #Sprawdza czy wartość na ręce jest równa
-            print_results(dealer_hand, player_hand)
-            print("You win !\n")
-            play_again()
-        elif total(dealer_hand) == 21:
-            print_results(dealer_hand, player_hand)
-            print("You lose\n")
-            play_again()
+  #  def blackjack(self):
+  #      if total(player_hand) == 21: #Sprawdza czy wartość na ręce jest równa
+  #          print_results(dealer_hand, player_hand)
+  #          print("You win !\n")
+  #          play_again()
+  #      elif total(dealer_hand) == 21:
+  #          print_results(dealer_hand, player_hand)
+  #          print("You lose\n")
+  #         play_again()
 
     def score(self):
-        if total(player_hand) == 21:
-            print_results(dealer_hand, player_hand)
+        if self.players_list[0].total() == 21:
             print("Congratulations! You got a Blackjack!\n")
-        elif total(dealer_hand) == 21:
-            print_results(dealer_hand, player_hand)
+        elif sum(self.dealer_cards.total()) == 21:
             print("Sorry, you lose. The dealer got a blackjack.\n")
-        elif total(player_hand) > 21:
-            print_results(dealer_hand, player_hand)
-            print("Sorry. You busted. You lose.\n")
-        elif total(dealer_hand) > 21:
-            print_results(dealer_hand, player_hand)
-            print("Dealer busts. You win!\n")
-        elif total(player_hand) < total(dealer_hand):
-            print_results(dealer_hand, player_hand)
+        elif self.players_list[0].total() > 21:
+            print("Sorry. Too much. You lose.\n")
+        elif self.players_list[0].total() < sum(self.dealer_cards[:]):
             print("Sorry. Your score isn't higher than the dealer. You lose.\n")
-        elif total(player_hand) > total(dealer_hand):
-            print_results(dealer_hand, player_hand)
+        elif self.players_list[0].total() > sum(self.dealer_cards[:]):
             print("Congratulations. Your score is higher than the dealer. You win\n")
 
 

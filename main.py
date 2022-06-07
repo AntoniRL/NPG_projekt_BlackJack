@@ -15,19 +15,20 @@ def main():
         Gra.rozdanie() 
         Gra.print_table()
         while TRUE: 
+            if Gra.players_list[0].total() > 21:
+                    break
             temp1 = input("[H]IT / [S]TAND \n").lower() #Wybór ruchu gracza
             if temp1 == 's':
                 break 
-            elif Gra.players_list[0].total()>21:
-                print ("Za dużo")
-                break
             else:
                 player_card = Gra.stack.pop()
                 Gra.players_list[0].add_card(player_card)
                 Gra.print_table()
+        Gra.score()    
         temp2 = input("[K]EEP PLAYING / [L]EAVE THE TABLE\n").lower()
         if temp2 == 'l':
             pulpit.clear()
             break
     pulpit.end_pulpit()
+    
 main()
