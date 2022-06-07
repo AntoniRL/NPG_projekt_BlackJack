@@ -7,19 +7,11 @@ from colorama import Fore
 class Game:
     def __init__(self, players_list, number_of_decks=1):
         self.stack = []  # Stos kart
-        self.dealer_cards = []
+        self.dealer = Player([],'dealer',0)         #Krupier jako gracz
         self.number_of_players = len(players_list)  # Liczba graczy
         self.players_list = players_list  # Lista graczy
         self.number_of_decks = number_of_decks  # Liczba użytych talii
         self.stack_creation()
-
-        for _ in range(2):
-            for i in range(len(self.players_list)):
-                player_card = self.stack.pop()
-                self.players_list[i].add_card(player_card)
-            dealer_card = self.stack.pop()
-            self.dealer_cards.append(dealer_card)   
-        print(self.players_list[0])
 
     def stack_creation(self):
         suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
@@ -39,12 +31,15 @@ class Game:
         return self.stack 
 
     def rozdanie (self):
-        for _ in range(2):
+        self.dealer.cards = []                         #Czyszczenie kart krupiera przed każdym rozdaniem
+        for i in range(len(self.players_list)):       #Pętla czyszcząca karty dla każdego gracza
+                self.players_list[i].cards = []
+        for _ in range(2):                            #Rozdanie 2 kart krupierowi i każdemu graczowi
             for i in range(len(self.players_list)):
                 player_card = self.stack.pop()
                 self.players_list[i].add_card(player_card)
             dealer_card = self.stack.pop()
-            self.dealer_cards.append(dealer_card)   
+            self.dealer.add_card(dealer_card)   
         print(self.players_list[0])    
 
     def play_again(self):
@@ -56,13 +51,13 @@ class Game:
     def clear(self):
         os.system('cls')
 
-    def print_table(self):
+    def print_table(self,show_dealer_card : bool) -> None:
         #interfejs da radę pokazać 7 kart dla krupiera i góra 10 kart gracza(po modyfikacji możliwe jest 14 i 20 odpowiednio), chyba wystarczy
         player_size = 20
         dealer_size = 14
 
         player_cards = self.players_list[0].cards  # jedyny gracz istniejący w trybie jednoosobowym, najprawdopoboniej do zmiany
-        dealer_cards = self.dealer_cards
+        dealer_cards = self.dealer.cards
 
         player_n_chars = len(player_cards)
         dealer_n_chars = len(dealer_cards)
@@ -74,13 +69,16 @@ class Game:
         player_hand_chars = ""
         player_hand_chars += "╱" + int((player_size - 2 * player_n_chars) / 2) * " "
         for card in player_cards:
-            player_hand_chars = card.symbol + " "
+            player_hand_chars = player_hand_chars + card.symbol + " "
         player_hand_chars += (player_size - len(player_hand_chars) + 1) * " " + "╲"
 
         dealer_hand_chars = ""
         dealer_hand_chars += "╱" + int((dealer_size - 2 * dealer_n_chars) / 2) * " "
-        for card in dealer_cards:
-            dealer_hand_chars += card.symbol
+        if show_dealer_card == True:
+            for card in dealer_cards:
+                dealer_hand_chars = dealer_hand_chars + card.symbol + " "
+        else :
+            dealer_hand_chars = dealer_hand_chars + card.symbol + " [?]"
         dealer_hand_chars += (dealer_size - len(dealer_hand_chars) + 1) * " " + "╲"
 
         print(Fore.GREEN + "  Wins: {:2d}".format(5) + Fore.RED + "   Losses: {:2d}".format(3) + Fore.WHITE)
@@ -104,13 +102,13 @@ class Game:
     def score(self):
         if self.players_list[0].total() == 21:
             print("Congratulations! You got a Blackjack!\n")
-        elif sum(self.dealer_cards.total()) == 21:
+        elif self.dealer.total() == 21:
             print("Sorry, you lose. The dealer got a blackjack.\n")
         elif self.players_list[0].total() > 21:
             print("Sorry. Too much. You lose.\n")
-        elif self.players_list[0].total() < sum(self.dealer_cards[:]):
+        elif self.players_list[0].total() < self.dealer.total():
             print("Sorry. Your score isn't higher than the dealer. You lose.\n")
-        elif self.players_list[0].total() > sum(self.dealer_cards[:]):
+        elif self.players_list[0].total() > self.dealer.total():
             print("Congratulations. Your score is higher than the dealer. You win\n")
 
 
@@ -126,9 +124,8 @@ class Player:
         self.nick = nick 
         self.cards = cards #Aktualne posiadane przez gracza karty
         self.nr_wins = nr_wins
+
     def add_card(self,card):
-
-
         self.cards.append(card)
 
     def total(self):
