@@ -45,9 +45,6 @@ class Game:
     def play_again(self):
         pass
 
-    def hit(self): 
-        pass
-
     def clear(self):
         os.system('cls')
 
