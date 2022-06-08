@@ -40,7 +40,12 @@ class Game:
                 self.players_list[i].add_card(player_card)
             dealer_card = self.stack.pop()
             self.dealer.add_card(dealer_card)   
-        print(self.players_list[0])    
+        print(self.players_list[0])  
+
+    def hit(self):
+	player_card = self.stack.pop()
+        self.players_list[0].add_card(player_card)
+        self.print_table(False)  
 
     def play_again(self):
         pass
@@ -136,7 +141,4 @@ class Player:
                 total-=10
         return total
     
-    def hit(self):
-	player_card = self.stack.pop()
-        self.players_list[0].add_card(player_card)
-        self.print_table(False)
+    
