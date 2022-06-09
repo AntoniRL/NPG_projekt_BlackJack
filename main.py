@@ -12,7 +12,7 @@ def main():
     n = pulpit.start_pulpit() #Odebranie z funkcji start_pulpit zmiennych (Lista graczy , liczba talii)
     Gra = game.Game(n[0],int(n[1])) #Inicjacja klasy Gra typu Game
     while TRUE: #Pętla sprawdzająca kiedy gracz chce odejść od stołu
-        Gra.rozdanie() 
+        Gra.stack_creation() 
         Gra.print_table()
         while TRUE: 
             temp1 = input("[H]IT / [S]TAND \n").lower() #Wybór ruchu gracza

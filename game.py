@@ -52,7 +52,7 @@ class Game:
         player_size = 20
         dealer_size = 14
 
-        player_cards = self.players_list[0].cards  # jedyny gracz istniejący w trybie jednoosobowym, najprawdopoboniej do zmiany
+        player_cards = self.players_list[0].cards  # jedyny gracz istniejący w trybie jednoosobowym
         dealer_cards = self.dealer_cards
 
         player_n_chars = len(player_cards)
@@ -62,16 +62,22 @@ class Game:
 
         self.clear()
 
-        player_hand_chars = ""
-        player_hand_chars += "╱" + int((player_size - 2 * player_n_chars) / 2) * " "
+        player_hand_chars = "╱" + int((player_size - 2 * player_n_chars) / 2) * " "
+       
         for card in player_cards:
-            player_hand_chars = card.symbol + " "
+            player_hand_chars += card.symbol + " "
+
         player_hand_chars += (player_size - len(player_hand_chars) + 1) * " " + "╲"
+
+        print(player_cards)
+        print(player_hand_chars)
 
         dealer_hand_chars = ""
         dealer_hand_chars += "╱" + int((dealer_size - 2 * dealer_n_chars) / 2) * " "
+        
         for card in dealer_cards:
             dealer_hand_chars += card.symbol
+
         dealer_hand_chars += (dealer_size - len(dealer_hand_chars) + 1) * " " + "╲"
 
         print(Fore.GREEN + "  Wins: {:2d}".format(5) + Fore.RED + "   Losses: {:2d}".format(3) + Fore.WHITE)
@@ -137,3 +143,39 @@ class Player:
             if card.symbol == "A" and total>21: 
                 total-=10
         return total
+
+    def save(self):
+        saves_path = os.path.abspath(os.getcwd()) + "\\saves"
+        curr_save_path = saves_path + f"\\{self.nick}.txt"
+
+        if not os.path.isdir(f"{saves_path}"):
+            try:
+                os.mkdir(saves_path)
+            except:
+                print("An error has occured")
+
+        prep_data = ""
+        data = [self.nick, self.nr_wins]
+
+        save_file = open(f"{curr_save_path}", "w")
+        for x in data:
+            prep_data += str(x) + "\n"
+
+        save_file.write(prep_data)
+        save_file.close()
+    
+    def open_save(self):
+        curr_save_path = os.path.abspath(os.getcwd()) + f"\\saves\\{self.nick}.txt"
+
+        if os.path.exists(curr_save_path):
+
+            read_data = []
+            save_file = open(f"{curr_save_path}", "r")
+
+            for line in save_file:
+                read_data.append(line.replace("\n", ""))
+        
+            self.nick, self.nr_wins = tuple(read_data)
+
+        else:
+            print("Save not found")
