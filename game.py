@@ -136,8 +136,8 @@ class Player:
     def total(self):
         total = 0
         for card in self.cards:
-            total+=card.value
-            if card.symbol == "A" and total>21: 
+            total+=card.value                        #Zsumowanie wartości wszystkich kart
+            if card.symbol == "A" and total>21:      #Jeśli suma kart jest większa niż 21 oraz obecna karta to as od sumy odejmowane jest 10
                 total-=10
         return total
     
