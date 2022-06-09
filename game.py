@@ -20,7 +20,6 @@ class Game:
         symbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
         values = {"A": 11, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10,
                   "K": 10}
-
         self.stack = []
         for _ in range(self.number_of_decks):
             for suit in suits:  # Pętla dla każdego koloru    
@@ -40,15 +39,12 @@ class Game:
                 self.players_list[i].add_card(player_card)
             dealer_card = self.stack.pop()
             self.dealer.add_card(dealer_card)   
-        print(self.players_list[0])  
+        print(self.players_list[0])
 
     def hit(self):
-	player_card = self.stack.pop()
+        player_card = self.stack.pop()
         self.players_list[0].add_card(player_card)
-        self.print_table(False)  
-
-    def play_again(self):
-        pass
+        self.print_table(False)
 
     def clear(self):
         os.system('cls')
@@ -58,13 +54,8 @@ class Game:
         player_size = 20
         dealer_size = 14
 
-<<<<<<< HEAD
-        player_cards = self.players_list[0].cards  # jedyny gracz istniejący w trybie jednoosobowym
-        dealer_cards = self.dealer_cards
-=======
         player_cards = self.players_list[0].cards  # jedyny gracz istniejący w trybie jednoosobowym, najprawdopoboniej do zmiany
         dealer_cards = self.dealer.cards
->>>>>>> ee289d3cafaf8f1102bc0415d8f4cd97635a6647
 
         player_n_chars = len(player_cards)
         dealer_n_chars = len(dealer_cards)
@@ -76,12 +67,7 @@ class Game:
         player_hand_chars = "╱" + int((player_size - 2 * player_n_chars) / 2) * " "
        
         for card in player_cards:
-<<<<<<< HEAD
-            player_hand_chars += card.symbol + " "
-
-=======
             player_hand_chars = player_hand_chars + card.symbol + " "
->>>>>>> ee289d3cafaf8f1102bc0415d8f4cd97635a6647
         player_hand_chars += (player_size - len(player_hand_chars) + 1) * " " + "╲"
 
         print(player_cards)
@@ -89,18 +75,11 @@ class Game:
 
         dealer_hand_chars = ""
         dealer_hand_chars += "╱" + int((dealer_size - 2 * dealer_n_chars) / 2) * " "
-<<<<<<< HEAD
-        
-        for card in dealer_cards:
-            dealer_hand_chars += card.symbol
-
-=======
         if show_dealer_card == True:
             for card in dealer_cards:
                 dealer_hand_chars = dealer_hand_chars + card.symbol + " "
         else:
             dealer_hand_chars = dealer_hand_chars + dealer_cards[0].symbol + " [?]"
->>>>>>> ee289d3cafaf8f1102bc0415d8f4cd97635a6647
         dealer_hand_chars += (dealer_size - len(dealer_hand_chars) + 1) * " " + "╲"
 
         print(Fore.GREEN + "  Wins: {:2d}".format(5) + Fore.RED + "   Losses: {:2d}".format(3) + Fore.WHITE)
@@ -160,7 +139,6 @@ class Player:
             if card.symbol == "A" and total>21:      #Jeśli suma kart jest większa niż 21 oraz obecna karta to as od sumy odejmowane jest 10
                 total-=10
         return total
-<<<<<<< HEAD
 
     def save(self):
         saves_path = os.path.abspath(os.getcwd()) + "\\saves"
@@ -197,7 +175,3 @@ class Player:
 
         else:
             print("Save not found")
-=======
-    
-    
->>>>>>> ee289d3cafaf8f1102bc0415d8f4cd97635a6647

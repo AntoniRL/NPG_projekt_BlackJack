@@ -20,9 +20,7 @@ def main():
             if temp1 == 's':
                 break 
             else:
-                player_card = Gra.stack.pop()
-                Gra.players_list[0].add_card(player_card)
-                Gra.print_table(False)
+                Gra.hit()
         Gra.print_table(True)
         while Gra.dealer.total() < Gra.players_list[0].total() <= 21: #Pętla ,w której krupier dobiera karty jeśli przegrywa
             dealer_card = Gra.stack.pop()
