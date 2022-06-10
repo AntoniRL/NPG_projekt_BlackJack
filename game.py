@@ -157,9 +157,33 @@ class Player:
         prep_data = ""
         data = [self.nick, self.nr_wins]
 
-        save_file = open(f"{curr_save_path}", "w")
+        try:
+            save_file = open(f"{curr_save_path}", "w")
+        except:
+            print("An error has occured")
+
         for x in data:
             prep_data += str(x) + "\n"
 
         save_file.write(prep_data)
         save_file.close()
+
+    def open_save(self):
+        curr_save_path = os.path.abspath(os.getcwd()) + f"\\saves\\{self.nick}.txt"
+
+        if os.path.exists(curr_save_path):
+
+            read_data = []
+
+            try:
+                save_file = open(f"{curr_save_path}", "r")
+            except:
+                print("An error has occured")
+
+            for line in save_file:
+                read_data.append(line.replace("\n", ""))
+        
+            self.nick, self.nr_wins = tuple(read_data)
+
+        else:
+            print("Save not found")
