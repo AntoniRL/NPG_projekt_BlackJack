@@ -42,9 +42,9 @@ class Game:
         print(self.players_list[0])
 
     def hit(self):
-        player_card = self.stack.pop()
-        self.players_list[0].add_card(player_card)
-        self.print_table(False)
+        player_card = self.stack.pop()                #Zabranie jednej karty z talii 
+        self.players_list[0].add_card(player_card)    #Dodanie karty do kolekcji gracza
+        self.print_table(False)          	      #Wyświetlenie aktualnego stranu kart na stole
 
     def clear(self):
         os.system('cls')
