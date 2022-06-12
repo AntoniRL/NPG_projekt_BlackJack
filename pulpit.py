@@ -37,13 +37,17 @@ def print_players():
 
 
 def start_pulpit():
+    """
+    Funkcja realizująca pulpit startowy
+    """
     global wins
     global losses
     players_list = []  # lista graczy [Pleyer()]
     number_of_decks = 0
 
     while True:
-        print(f.renderText('   WELCOME TO\nB L A C K J A C K !'))
+        # Pętla wykonuje się dopóki gracz nie zatwierdzi że chce rozpocząć grę
+        print(f.renderText('    WELCOEM TO\nB L A C K J A C K !'))
         print(" "*10+"-"*32+"\n")
         print(" "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
         print(" "*10+"-"*32+"\n")
@@ -110,10 +114,16 @@ def start_pulpit():
     return (players_list, number_of_decks)
 
 
-def end_pulpit():
-    pass
+def end_pulpit(if_win: bool):
+    """
+    Funkcja realizująca pulpit końcowy. 
+
+    :param if_win: True jezeli wygrana False jeżeli przegrana
+    """
+    if if_win:
+        print_green(f.renderText('WIN!'))
+    else:
+        print_red(f.renderText('DEFEAT'))
 
 
-# # Kod wypisujący wygraną i przegraną
-# print_red(f.renderText('DEFEAT'))
-# print_green(f.renderText('WIN!'))
+start_pulpit()
