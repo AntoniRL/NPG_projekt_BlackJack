@@ -80,9 +80,6 @@ class Game:
         player_hand_chars += (player_size -
                               len(player_hand_chars) + 1) * " " + "╲"
 
-        print(player_cards)
-        print(player_hand_chars)
-
         dealer_hand_chars = ""
         dealer_hand_chars += "╱" + \
             int((dealer_size - 2 * dealer_n_chars) / 2) * " "
@@ -131,7 +128,6 @@ class Game:
                 "Congratulations. Your score is higher than the dealer. You win\n")
         elif self.dealer.total() > 21 > self.players_list[0].total():
             pulpit.print_green("Congratulations. You win\n")
-
 
 class Card:
     def __init__(self, suit, symbol, value):

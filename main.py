@@ -7,7 +7,6 @@ from tkinter import W
 import game
 import pulpit
 
-
 def main():
     # Odebranie z funkcji start_pulpit zmiennych (Lista graczy , liczba talii)
     n = pulpit.start_pulpit()
@@ -31,8 +30,7 @@ def main():
             Gra.print_table(True)
         Gra.score()
         if len(Gra.stack) < 5:  # Warunek zabezpieczający przed skończeniem się kart
-            temp1 = input(
-                "Kończą się karty. Chcesz ponowne rozdanie? [T/N]\n").lower()
+            temp1 = input("Kończą się karty. Chcesz ponowne rozdanie? [T/N]\n").lower()
         else:
             temp2 = input("[K]EEP PLAYING / [L]EAVE THE TABLE\n").lower()
         if temp1 == 't':  # Jeśli kończą się karty,a gracz chce grać dalej tworzy nowy stos
@@ -42,6 +40,5 @@ def main():
             break
 
     pulpit.end_pulpit()
-
 
 main()
