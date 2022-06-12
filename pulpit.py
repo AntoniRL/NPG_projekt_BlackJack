@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+from tkinter import N
 from termcolor import colored, cprint
 from pyfiglet import Figlet
 from prettytable import PrettyTable
@@ -47,9 +48,10 @@ def start_pulpit():
 
     while True:
         # Pętla wykonuje się dopóki gracz nie zatwierdzi że chce rozpocząć grę
-        print(f.renderText('    WELCOEM TO\nB L A C K J A C K !'))
+        print(f.renderText('    WELCOME TO\nB L A C K J A C K !'))
         print(" "*10+"-"*32+"\n")
-        print(" "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
+        print(
+            " "*16+f"\033[1;32;40mWINS:  \033[1;37;40m{wins}   \033[1;31;40mLOSSES:  \033[1;37;40m{losses}\n")
         print(" "*10+"-"*32+"\n")
 
         # pętla obsługująca dodawanie graczy
@@ -73,7 +75,7 @@ def start_pulpit():
                     clear_line()
                     continue
             # Dodanie gracza do gry
-            players_list.append(game.Player([],nick,0))
+            players_list.append(game.Player([], nick, 0))
             clear_line()
             clear_line()
             more_players = input(
@@ -104,7 +106,6 @@ def start_pulpit():
 
         temp = input("[S]TART GAME / [G]o back to menu\n").lower()
 
-
         if temp == 's':
             clear()
             break
@@ -114,16 +115,18 @@ def start_pulpit():
     return (players_list, number_of_decks)
 
 
-def end_pulpit(if_win: bool):
+def end_pulpit():
     """
     Funkcja realizująca pulpit końcowy. 
 
     :param if_win: True jezeli wygrana False jeżeli przegrana
     """
-    if if_win:
-        print_green(f.renderText('WIN!'))
-    else:
-        print_red(f.renderText('DEFEAT'))
+    clear()
+    print('\nThank you for playing Black Jack!')
+    temp = input('\nDo you want to save results? [Y]es/[N]o\n').lower()
+    if temp == 'y':
+        pass
+        # save_results()
+    clear()
+    
 
-
-start_pulpit()
