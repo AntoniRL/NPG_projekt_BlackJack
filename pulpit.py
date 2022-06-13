@@ -59,7 +59,22 @@ def start_pulpit():
             nick = input("\033[3;37;40mType a players nick: \033[0;37;40m")
             age = input("\033[3;37;40mType the players age: \033[0;37;40m")
             # sprawdzam czy gracz jest pełnoletni
-            if int(age) < 18:
+            if int(age) < 0:
+                print('Bledny wiek. Sprubuj jeszcze raz')
+                con = input("[C]ontinue\n").lower()
+                if con == 'c':
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    continue
+                else:
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    continue
+            elif int(age) < 18:
                 clear_line()
                 clear_line()
                 print("Sorry, you are too young to play Blackjack :(")
@@ -69,6 +84,12 @@ def start_pulpit():
                     print(f"Come back in {18-int(age)} years.")
                 con = input("[C]ontinue\n").lower()
                 if con == 'c':
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    clear_line()
+                    continue
+                else:
                     clear_line()
                     clear_line()
                     clear_line()
@@ -128,5 +149,3 @@ def end_pulpit():
         pass
         # save_results()
     clear()
-    
-
