@@ -62,13 +62,8 @@ def start_pulpit():
             if int(age) < 0:
                 print('Bledny wiek. Sprubuj jeszcze raz')
                 con = input("[C]ontinue\n").lower()
-                if con == 'c':
+                if con:
                     clear_line()
-                    clear_line()
-                    clear_line()
-                    clear_line()
-                    continue
-                else:
                     clear_line()
                     clear_line()
                     clear_line()
@@ -83,13 +78,7 @@ def start_pulpit():
                 else:
                     print(f"Come back in {18-int(age)} years.")
                 con = input("[C]ontinue\n").lower()
-                if con == 'c':
-                    clear_line()
-                    clear_line()
-                    clear_line()
-                    clear_line()
-                    continue
-                else:
+                if con:
                     clear_line()
                     clear_line()
                     clear_line()
@@ -149,3 +138,5 @@ def end_pulpit():
         pass
         # save_results()
     clear()
+
+start_pulpit()
