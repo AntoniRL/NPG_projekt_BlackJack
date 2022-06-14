@@ -138,5 +138,3 @@ def end_pulpit():
         pass
         # save_results()
     clear()
-
-start_pulpit()
